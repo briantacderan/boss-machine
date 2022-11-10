@@ -4757,7 +4757,7 @@ var updateIdea = function updateIdea(idea) {
 
 var createIdeaThunk = function createIdeaThunk(idea) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:4001/api/ideas', idea).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:5000/api/ideas', idea).then(function (res) {
       return res.data;
     }).then(function (createdIdea) {
       dispatch(createIdea(createdIdea));
@@ -4766,7 +4766,7 @@ var createIdeaThunk = function createIdeaThunk(idea) {
 };
 var updateIdeaThunk = function updateIdeaThunk(idea) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:4001/api/ideas/".concat(idea.id), idea).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:5000/api/ideas/".concat(idea.id), idea).then(function (res) {
       return res.data;
     }).then(function (updatedIdea) {
       dispatch(updateIdea(updatedIdea));
@@ -4890,7 +4890,7 @@ var cancelMeetings = function cancelMeetings() {
 };
 var createMeetingThunk = function createMeetingThunk() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:4001/api/meetings').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:5000/api/meetings').then(function (res) {
       return res.data;
     }).then(function (createdMeeting) {
       dispatch(createMeeting(createdMeeting));
@@ -4899,7 +4899,7 @@ var createMeetingThunk = function createMeetingThunk() {
 };
 var cancelMeetingsThunk = function cancelMeetingsThunk() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('http://localhost:4001/api/meetings').then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('http://localhost:5000/api/meetings').then(function () {
       dispatch(cancelMeetings());
     })["catch"](console.error.bind(console));
   };
@@ -4985,7 +4985,7 @@ var updateMinion = function updateMinion(minion) {
 
 var createMinionThunk = function createMinionThunk(minion) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:4001/api/minions', minion).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:5000/api/minions', minion).then(function (res) {
       return res.data;
     }).then(function (createdMinion) {
       dispatch(addMinion(createdMinion));
@@ -4995,7 +4995,7 @@ var createMinionThunk = function createMinionThunk(minion) {
 };
 var updateMinionThunk = function updateMinionThunk(minion) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:4001/api/minions/".concat(minion.id), minion).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:5000/api/minions/".concat(minion.id), minion).then(function (res) {
       return res.data;
     }).then(function (updatedMinion) {
       dispatch(updateMinion(updatedMinion));
@@ -5005,10 +5005,10 @@ var updateMinionThunk = function updateMinionThunk(minion) {
 };
 var deleteMinionThunk = function deleteMinionThunk(minionId) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("http://localhost:4001/api/minions/".concat(minionId)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("http://localhost:5000/api/minions/".concat(minionId)).then(function (res) {
       return res.data;
     }).then(function () {
-      return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("http://localhost:4001/api/minions");
+      return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("http://localhost:5000/api/minions");
     }).then(function (res) {
       return res.data;
     }).then(function (allMinions) {
@@ -5189,7 +5189,7 @@ var deleteWork = function deleteWork(workId) {
 
 var createWorkThunk = function createWorkThunk(work) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("http://localhost:4001/api/minions/".concat(work.minionId, "/work"), work).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("http://localhost:5000/api/minions/".concat(work.minionId, "/work"), work).then(function (res) {
       return res.data;
     }).then(function (createdWork) {
       dispatch(addWork(createdWork));
@@ -5198,7 +5198,7 @@ var createWorkThunk = function createWorkThunk(work) {
 };
 var updateWorkThunk = function updateWorkThunk(work) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:4001/api/minions/".concat(work.minionId, "/work/").concat(work.id), work).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:5000/api/minions/".concat(work.minionId, "/work/").concat(work.id), work).then(function (res) {
       return res.data;
     }).then(function (updatedWork) {
       dispatch(updateWork(updatedWork));
@@ -5207,7 +5207,7 @@ var updateWorkThunk = function updateWorkThunk(work) {
 };
 var deleteWorkThunk = function deleteWorkThunk(work) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("http://localhost:4001/api/minions/".concat(work.minionId, "/work/").concat(work.id)).then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("http://localhost:5000/api/minions/".concat(work.minionId, "/work/").concat(work.id)).then(function () {
       dispatch(deleteWork(work.id));
     })["catch"](console.error.bind(console));
   };
@@ -48591,7 +48591,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var appEnter = function appEnter(nextRouterState) {
-  Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:4001/api/minions'), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:4001/api/ideas'), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:4001/api/meetings')]).then(function (_ref) {
+  Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:5000/api/minions'), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:5000/api/ideas'), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:5000/api/meetings')]).then(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 3),
       minionsResponse = _ref2[0],
       ideasResponse = _ref2[1],
@@ -48610,12 +48610,12 @@ var appEnter = function appEnter(nextRouterState) {
 var singleMinionEnter = function singleMinionEnter(nextRouterState) {
   _store_index__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch((0,_store_appState__WEBPACK_IMPORTED_MODULE_11__.resetEditingState)());
   var id = nextRouterState.params.id;
-  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:4001/api/minions/".concat(id)).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:5000/api/minions/".concat(id)).then(function (res) {
     return res.data;
   }).then(function (minion) {
     _store_index__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch((0,_store_selectedMinion__WEBPACK_IMPORTED_MODULE_6__.setSelectedMinion)(minion));
   })["catch"](console.error.bind(console));
-  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:4001/api/minions/".concat(id, "/work")).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:5000/api/minions/".concat(id, "/work")).then(function (res) {
     return res.data;
   }).then(function (work) {
     _store_index__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch((0,_store_work__WEBPACK_IMPORTED_MODULE_9__.setWork)(work));
@@ -48623,7 +48623,7 @@ var singleMinionEnter = function singleMinionEnter(nextRouterState) {
 };
 var singleIdeaEnter = function singleIdeaEnter(nextRouterState) {
   var id = nextRouterState.params.id;
-  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:4001/api/ideas/".concat(id)).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:5000/api/ideas/".concat(id)).then(function (res) {
     return res.data;
   }).then(function (idea) {
     _store_index__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch((0,_store_selectedIdea__WEBPACK_IMPORTED_MODULE_8__.setSelectedIdea)(idea));
