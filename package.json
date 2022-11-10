@@ -1,0 +1,46 @@
+{
+  "name": "boss-machine",
+  "version": "1.0.0",
+  "description": "nvm use 14.21.1",
+  "main": "server.js",
+  "scripts": {
+    "test": "cross-env PORT=8000 mocha --watch",
+    "start-dev": "webpack -w & nodemon --watch server.js --watch server/",
+    "start": "nodemon --watch server.js --watch server/",
+    "postinstall": "webpack"
+  },
+  "author": "Codecademy",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.1.3",
+    "body-parser": "^1.20.1",
+    "chai": "^4.3.7",
+    "core-js": "^3.26.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "express": "^4.18.2",
+    "mocha": "^10.1.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "braces": "^3.0.2",
+    "faker": "^5.5.3",
+    "glob-parent": "^6.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.3",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
