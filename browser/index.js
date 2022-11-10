@@ -22,11 +22,13 @@ import AllIdeas from './components/AllIdeas';
 import Idea from './components/Idea';
 import Minion from './components/Minion';
 
+const DOMAIN = process.env.DOMAIN_NAME || 'http://localhost:5000';
+
 const appEnter = nextRouterState => {
   Promise.all([
-    axios.get('http://localhost:5000/api/minions'),
-    axios.get('http://localhost:5000/api/ideas'),
-    axios.get('http://localhost:5000/api/meetings'),
+    axios.get(`${DOMAIN}/api/minions`),
+    axios.get(`${DOMAIN}/api/ideas`),
+    axios.get(`${DOMAIN}/api/meetings`),
   ])
   .then(([minionsResponse,ideasResponse, meetingsResponse]) => {
     return [minionsResponse.data, ideasResponse.data, meetingsResponse.data];
@@ -42,14 +44,14 @@ const appEnter = nextRouterState => {
 const singleMinionEnter = nextRouterState => {
   store.dispatch(resetEditingState());
   const id = nextRouterState.params.id;
-  axios.get(`http://localhost:5000/api/minions/${id}`)
+  axios.get(`${DOMAIN}/api/minions/${id}`)
   .then(res => res.data)
   .then(minion => {
     store.dispatch(setSelectedMinion(minion));
   })
   .catch(console.error.bind(console));
 
-  axios.get(`http://localhost:5000/api/minions/${id}/work`)
+  axios.get(`${DOMAIN}/api/minions/${id}/work`)
   .then(res => res.data)
   .then(work => {
     store.dispatch(setWork(work));
@@ -59,7 +61,7 @@ const singleMinionEnter = nextRouterState => {
 
 const singleIdeaEnter = nextRouterState => {
   const id = nextRouterState.params.id;
-  axios.get(`http://localhost:5000/api/ideas/${id}`)
+  axios.get(`${DOMAIN}/api/ideas/${id}`)
   .then(res => res.data)
   .then(idea => {
     store.dispatch(setSelectedIdea(idea));

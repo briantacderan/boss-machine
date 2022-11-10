@@ -24,5 +24,16 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins:[
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      BROWSER_SUPPORTS_HTML5: true,
+      TWO: '1+1',
+      'typeof window': JSON.stringify('object'),
+      'process.env': {
+        DOMAIN_NAME: JSON.stringify(process.env.DOMAIN_NAME)
+      },
+    })
+  ]
 };

@@ -5,6 +5,8 @@ const CREATE_WORK = 'CREATE_WORK';
 const UPDATE_WORK = 'UPDATE_WORK';
 const DELETE_WORK = 'DELETE_WORK';
 
+const DOMAIN = process.env.DOMAIN_NAME || 'http://localhost:5000';
+
 // Actions
 
 export const setWork = allWork => {
@@ -38,7 +40,7 @@ export const deleteWork = workId => {
 // Thunks
 
 export const createWorkThunk = work => dispatch => {
-  axios.post(`http://localhost:5000/api/minions/${work.minionId}/work`, work)
+  axios.post(`${DOMAIN}/api/minions/${work.minionId}/work`, work)
   .then(res => res.data)
   .then(createdWork => {
     dispatch(addWork(createdWork));
@@ -47,7 +49,7 @@ export const createWorkThunk = work => dispatch => {
 }
 
 export const updateWorkThunk = work => dispatch => {
-  axios.put(`http://localhost:5000/api/minions/${work.minionId}/work/${work.id}`, work)
+  axios.put(`${DOMAIN}/api/minions/${work.minionId}/work/${work.id}`, work)
   .then(res => res.data)
   .then(updatedWork => {
     dispatch(updateWork(updatedWork));
@@ -56,7 +58,7 @@ export const updateWorkThunk = work => dispatch => {
 }
 
 export const deleteWorkThunk = work => dispatch => {
-  axios.delete(`http://localhost:5000/api/minions/${work.minionId}/work/${work.id}`)
+  axios.delete(`${DOMAIN}/api/minions/${work.minionId}/work/${work.id}`)
   .then(() => {
     dispatch(deleteWork(work.id));
   })

@@ -7,6 +7,8 @@ const SET_MINIONS = 'SET_MINIONS';
 const CREATE_MINION = 'CREATE_MINION';
 const UPDATE_MINION = 'UPDATE_MINION';
 
+const DOMAIN = process.env.DOMAIN_NAME || 'http://localhost:5000';
+
 // Actions
 
 export const setMinions = minions => {
@@ -33,7 +35,7 @@ export const updateMinion = minion => {
 // Thunks
 
 export const createMinionThunk = minion => dispatch => {
-  axios.post('http://localhost:5000/api/minions', minion)
+  axios.post(`${DOMAIN}/api/minions`, minion)
   .then(res => res.data)
   .then(createdMinion => {
     dispatch(addMinion(createdMinion));
@@ -43,7 +45,7 @@ export const createMinionThunk = minion => dispatch => {
 }
 
 export const updateMinionThunk = minion => dispatch => {
-  axios.put(`http://localhost:5000/api/minions/${minion.id}`, minion)
+  axios.put(`${DOMAIN}/api/minions/${minion.id}`, minion)
   .then(res => res.data)
   .then(updatedMinion => {
     dispatch(updateMinion(updatedMinion));
@@ -53,10 +55,10 @@ export const updateMinionThunk = minion => dispatch => {
 }
 
 export const deleteMinionThunk = minionId => dispatch => {
-  axios.delete(`http://localhost:5000/api/minions/${minionId}`)
+  axios.delete(`${DOMAIN}/api/minions/${minionId}`)
   .then(res => res.data)
   .then(() => {
-    return axios.get(`http://localhost:5000/api/minions`)
+    return axios.get(`${DOMAIN}/api/minions`)
   })
   .then(res => res.data)
   .then(allMinions => {

@@ -6,6 +6,8 @@ const SET_IDEAS = 'SET_IDEAS';
 const CREATE_IDEA = 'CREATE_IDEA';
 const UPDATE_IDEA = 'UPDATE_IDEA';
 
+const DOMAIN = process.env.DOMAIN_NAME || 'http://localhost:5000';
+
 // actions
 
 export const setIdeas = ideas => {
@@ -32,7 +34,7 @@ export const updateIdea = idea => {
 // Thunks
 
 export const createIdeaThunk = idea => dispatch => {
-  axios.post('http://localhost:5000/api/ideas', idea)
+  axios.post(`${DOMAIN}/api/ideas`, idea)
   .then(res => res.data)
   .then(createdIdea => {
     dispatch(createIdea(createdIdea));
@@ -41,7 +43,7 @@ export const createIdeaThunk = idea => dispatch => {
 }
 
 export const updateIdeaThunk = idea => dispatch => {
-  axios.put(`http://localhost:5000/api/ideas/${idea.id}`, idea)
+  axios.put(`${DOMAIN}/api/ideas/${idea.id}`, idea)
   .then(res => res.data)
   .then(updatedIdea => {
     dispatch(updateIdea(updatedIdea));

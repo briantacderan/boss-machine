@@ -4,6 +4,8 @@ const CREATE_MEETING = 'CREATE_MEETING';
 const CANCEL_MEETINGS = 'CANCEL_MEETINGS';
 const SET_MEETINGS = 'SET_MEETINGS';
 
+const DOMAIN = process.env.DOMAIN_NAME || 'http://localhost:5000';
+
 export const setMeetings = meetings => {
   return {
     type: SET_MEETINGS,
@@ -25,7 +27,7 @@ export const cancelMeetings = () => {
 }
 
 export const createMeetingThunk = () => dispatch => {
-  axios.post('http://localhost:5000/api/meetings')
+  axios.post(`${DOMAIN}/api/meetings`)
   .then(res => res.data)
   .then(createdMeeting => {
     dispatch(createMeeting(createdMeeting));
@@ -34,7 +36,7 @@ export const createMeetingThunk = () => dispatch => {
 }
 
 export const cancelMeetingsThunk = () => dispatch => {
-  axios.delete('http://localhost:5000/api/meetings')
+  axios.delete(`${DOMAIN}/api/meetings`)
   .then(() => {
     dispatch(cancelMeetings());
   })
@@ -47,7 +49,7 @@ export default (initialState = initial, action) => {
   switch(action.type) {
     case CREATE_MEETING:
       const newMeetings = [action.meeting, ...initialState];
-      newMeetings.sort((a, b) => { 
+      newMeetings.sort((a, b) => {
         return new Date(a.date).getTime() - new Date(b.date).getTime();
       });
       return newMeetings;

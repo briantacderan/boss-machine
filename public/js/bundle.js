@@ -398,7 +398,7 @@ function createURL(location) {
   // window.location.origin is "null" (the literal string value) in Firefox
   // under certain conditions, notably when serving from a local HTML file
   // See https://bugzilla.mozilla.org/show_bug.cgi?id=878297
-  let base = typeof window !== "undefined" && typeof window.location !== "undefined" && window.location.origin !== "null" ? window.location.origin : "unknown://unknown";
+  let base =  true && typeof window.location !== "undefined" && window.location.origin !== "null" ? window.location.origin : "unknown://unknown";
   let href = typeof location === "string" ? location : createPath(location);
   return new URL(href, base);
 }
@@ -1292,7 +1292,7 @@ const IDLE_FETCHER = {
   formEncType: undefined,
   formData: undefined
 };
-const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
+const isBrowser =  true && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
 const isServer = !isBrowser; //#endregion
 ////////////////////////////////////////////////////////////////////////////////
 //#region createRouter
@@ -4731,6 +4731,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var SET_IDEAS = 'SET_IDEAS';
 var CREATE_IDEA = 'CREATE_IDEA';
 var UPDATE_IDEA = 'UPDATE_IDEA';
+var DOMAIN =  false || 'http://localhost:5000';
 
 // actions
 
@@ -4757,7 +4758,7 @@ var updateIdea = function updateIdea(idea) {
 
 var createIdeaThunk = function createIdeaThunk(idea) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:5000/api/ideas', idea).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(DOMAIN, "/api/ideas"), idea).then(function (res) {
       return res.data;
     }).then(function (createdIdea) {
       dispatch(createIdea(createdIdea));
@@ -4766,7 +4767,7 @@ var createIdeaThunk = function createIdeaThunk(idea) {
 };
 var updateIdeaThunk = function updateIdeaThunk(idea) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:5000/api/ideas/".concat(idea.id), idea).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("".concat(DOMAIN, "/api/ideas/").concat(idea.id), idea).then(function (res) {
       return res.data;
     }).then(function (updatedIdea) {
       dispatch(updateIdea(updatedIdea));
@@ -4871,6 +4872,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var CREATE_MEETING = 'CREATE_MEETING';
 var CANCEL_MEETINGS = 'CANCEL_MEETINGS';
 var SET_MEETINGS = 'SET_MEETINGS';
+var DOMAIN =  false || 'http://localhost:5000';
 var setMeetings = function setMeetings(meetings) {
   return {
     type: SET_MEETINGS,
@@ -4890,7 +4892,7 @@ var cancelMeetings = function cancelMeetings() {
 };
 var createMeetingThunk = function createMeetingThunk() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:5000/api/meetings').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(DOMAIN, "/api/meetings")).then(function (res) {
       return res.data;
     }).then(function (createdMeeting) {
       dispatch(createMeeting(createdMeeting));
@@ -4899,7 +4901,7 @@ var createMeetingThunk = function createMeetingThunk() {
 };
 var cancelMeetingsThunk = function cancelMeetingsThunk() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]('http://localhost:5000/api/meetings').then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("".concat(DOMAIN, "/api/meetings")).then(function () {
       dispatch(cancelMeetings());
     })["catch"](console.error.bind(console));
   };
@@ -4959,6 +4961,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var SET_MINIONS = 'SET_MINIONS';
 var CREATE_MINION = 'CREATE_MINION';
 var UPDATE_MINION = 'UPDATE_MINION';
+var DOMAIN =  false || 'http://localhost:5000';
 
 // Actions
 
@@ -4985,7 +4988,7 @@ var updateMinion = function updateMinion(minion) {
 
 var createMinionThunk = function createMinionThunk(minion) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://localhost:5000/api/minions', minion).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(DOMAIN, "/api/minions"), minion).then(function (res) {
       return res.data;
     }).then(function (createdMinion) {
       dispatch(addMinion(createdMinion));
@@ -4995,7 +4998,7 @@ var createMinionThunk = function createMinionThunk(minion) {
 };
 var updateMinionThunk = function updateMinionThunk(minion) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:5000/api/minions/".concat(minion.id), minion).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("".concat(DOMAIN, "/api/minions/").concat(minion.id), minion).then(function (res) {
       return res.data;
     }).then(function (updatedMinion) {
       dispatch(updateMinion(updatedMinion));
@@ -5005,10 +5008,10 @@ var updateMinionThunk = function updateMinionThunk(minion) {
 };
 var deleteMinionThunk = function deleteMinionThunk(minionId) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("http://localhost:5000/api/minions/".concat(minionId)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("".concat(DOMAIN, "/api/minions/").concat(minionId)).then(function (res) {
       return res.data;
     }).then(function () {
-      return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("http://localhost:5000/api/minions");
+      return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get("".concat(DOMAIN, "/api/minions"));
     }).then(function (res) {
       return res.data;
     }).then(function (allMinions) {
@@ -5157,6 +5160,7 @@ var SET_WORK = 'SET_WORK';
 var CREATE_WORK = 'CREATE_WORK';
 var UPDATE_WORK = 'UPDATE_WORK';
 var DELETE_WORK = 'DELETE_WORK';
+var DOMAIN =  false || 'http://localhost:5000';
 
 // Actions
 
@@ -5189,7 +5193,7 @@ var deleteWork = function deleteWork(workId) {
 
 var createWorkThunk = function createWorkThunk(work) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("http://localhost:5000/api/minions/".concat(work.minionId, "/work"), work).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(DOMAIN, "/api/minions/").concat(work.minionId, "/work"), work).then(function (res) {
       return res.data;
     }).then(function (createdWork) {
       dispatch(addWork(createdWork));
@@ -5198,7 +5202,7 @@ var createWorkThunk = function createWorkThunk(work) {
 };
 var updateWorkThunk = function updateWorkThunk(work) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("http://localhost:5000/api/minions/".concat(work.minionId, "/work/").concat(work.id), work).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("".concat(DOMAIN, "/api/minions/").concat(work.minionId, "/work/").concat(work.id), work).then(function (res) {
       return res.data;
     }).then(function (updatedWork) {
       dispatch(updateWork(updatedWork));
@@ -5207,7 +5211,7 @@ var updateWorkThunk = function updateWorkThunk(work) {
 };
 var deleteWorkThunk = function deleteWorkThunk(work) {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("http://localhost:5000/api/minions/".concat(work.minionId, "/work/").concat(work.id)).then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"]("".concat(DOMAIN, "/api/minions/").concat(work.minionId, "/work/").concat(work.id)).then(function () {
       dispatch(deleteWork(work.id));
     })["catch"](console.error.bind(console));
   };
@@ -5817,7 +5821,7 @@ function registerDirectEvent(registrationName, dependencies) {
   }
 }
 
-var canUseDOM = !!(typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
+var canUseDOM = !!( true && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -9729,7 +9733,7 @@ var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
   // try-catch. Neat!
   // Check that the browser supports the APIs we need to implement our special
   // DEV version of invokeGuardedCallback
-  if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
+  if ( true && typeof window.dispatchEvent === 'function' && typeof document !== 'undefined' && typeof document.createEvent === 'function') {
     var fakeNode = document.createElement('react');
 
     invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a, b, c, d, e, f) {
@@ -37334,7 +37338,7 @@ __webpack_require__.r(__webpack_exports__);
 // subscription is created and an inconsistent state may be observed
 // Matches logic in React's `shared/ExecutionEnvironment` file
 
-const canUseDOM = !!(typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
+const canUseDOM = !!( true && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
 const useIsomorphicLayoutEffect = canUseDOM ? react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect : react__WEBPACK_IMPORTED_MODULE_0__.useEffect;
 
 /***/ }),
@@ -38665,7 +38669,7 @@ function useSyncExternalStore$1(subscribe, getSnapshot, getServerSnapshot) {
  * provide a UMD-compatible package, so we need this to be able to distribute
  * UMD react-router bundles
  */
-const canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
+const canUseDOM = !!( true && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
 const isServerEnvironment = !canUseDOM;
 const shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore$2;
 const useSyncExternalStore = "useSyncExternalStore" in react__WEBPACK_IMPORTED_MODULE_1__ ? (module => module.useSyncExternalStore)(react__WEBPACK_IMPORTED_MODULE_1__) : shim;
@@ -44252,7 +44256,7 @@ function useSyncExternalStore$1(subscribe, getSnapshot, getServerSnapshot) {
   return getSnapshot();
 }
 
-var canUseDOM = !!(typeof window !== 'undefined' && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
+var canUseDOM = !!( true && typeof window.document !== 'undefined' && typeof window.document.createElement !== 'undefined');
 
 var isServerEnvironment = !canUseDOM;
 
@@ -47789,7 +47793,7 @@ const isStandardBrowserEnv = (() => {
     return false;
   }
 
-  return typeof window !== 'undefined' && typeof document !== 'undefined';
+  return  true && typeof document !== 'undefined';
 })();
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -48590,8 +48594,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var DOMAIN =  false || 'http://localhost:5000';
 var appEnter = function appEnter(nextRouterState) {
-  Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:5000/api/minions'), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:5000/api/ideas'), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('http://localhost:5000/api/meetings')]).then(function (_ref) {
+  Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(DOMAIN, "/api/minions")), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(DOMAIN, "/api/ideas")), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(DOMAIN, "/api/meetings"))]).then(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 3),
       minionsResponse = _ref2[0],
       ideasResponse = _ref2[1],
@@ -48610,12 +48615,12 @@ var appEnter = function appEnter(nextRouterState) {
 var singleMinionEnter = function singleMinionEnter(nextRouterState) {
   _store_index__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch((0,_store_appState__WEBPACK_IMPORTED_MODULE_11__.resetEditingState)());
   var id = nextRouterState.params.id;
-  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:5000/api/minions/".concat(id)).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(DOMAIN, "/api/minions/").concat(id)).then(function (res) {
     return res.data;
   }).then(function (minion) {
     _store_index__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch((0,_store_selectedMinion__WEBPACK_IMPORTED_MODULE_6__.setSelectedMinion)(minion));
   })["catch"](console.error.bind(console));
-  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:5000/api/minions/".concat(id, "/work")).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(DOMAIN, "/api/minions/").concat(id, "/work")).then(function (res) {
     return res.data;
   }).then(function (work) {
     _store_index__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch((0,_store_work__WEBPACK_IMPORTED_MODULE_9__.setWork)(work));
@@ -48623,7 +48628,7 @@ var singleMinionEnter = function singleMinionEnter(nextRouterState) {
 };
 var singleIdeaEnter = function singleIdeaEnter(nextRouterState) {
   var id = nextRouterState.params.id;
-  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("http://localhost:5000/api/ideas/".concat(id)).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("".concat(DOMAIN, "/api/ideas/").concat(id)).then(function (res) {
     return res.data;
   }).then(function (idea) {
     _store_index__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch((0,_store_selectedIdea__WEBPACK_IMPORTED_MODULE_8__.setSelectedIdea)(idea));
