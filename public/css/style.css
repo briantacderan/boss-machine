@@ -887,3 +887,88 @@ input, textarea {
     margin-top: 40px;
   }
 }
+
+@media only screen and (min-width: 450px) and (min-height: 1000px) {
+  #heading {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 20vh;
+  }
+
+  #title {
+    max-width: 40vw;
+    font-size: 4rem;
+  }
+
+  img#logo-img {
+    padding-top: 2rem;
+  }
+
+  #landing-page,
+  div:has(> #single-idea-landing),
+  div:has(> #single-minion-landing),
+  div:has(> #ideas-landing),
+  div:has(> #meetings-landing),
+  div:has(> #minions-landing) {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 100vh;
+    height: 80vh;
+    padding-bottom: 20px;
+  }
+
+  div#single-idea-landing,
+  div#single-minion-landing,
+  div#ideas-landing,
+  div#meetings-landing,
+  div#minions-landing {
+    width: 90vw;
+    height: 40vh;
+  }
+
+  #launch-buttons {
+    font-size: 1rem;
+    line-height: 14px;
+    width: 90vw;
+    height: 150px;
+  }
+
+  .launch-button {
+    font-size: 1rem;
+    line-height: 14px;
+    width: 44vw;
+    height: 40vw;
+  }
+
+  .launch-icon,
+  img#logo-img {
+    height: 180px;
+    width: 180px;
+  }
+
+  .meetings-label {
+    font-size: 2rem;
+  }
+
+  #meetings-landing {
+    width: 90vw;
+    height: 40vh;
+  }
+
+  #meetings-landing td {
+    font-size: 1rem;
+  }
+
+  #meetings-cancel,
+  .back-button {
+    font-size: 2rem;
+    width: 250px;
+    height: 80px;
+    margin: 2rem;
+  }
+}
