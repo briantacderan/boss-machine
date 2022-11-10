@@ -1,7 +1,6 @@
 {
   "name": "bossing-machine",
   "version": "1.0.0",
-  "description": "nvm use 14.21.1",
   "main": "server.js",
   "scripts": {
     "test": "cross-env PORT=8000 mocha --watch",
@@ -42,5 +41,8 @@
     "redux-thunk": "^2.4.2",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
+  },
+  "engines": {
+    "node": "14.21.1"
   }
 }
