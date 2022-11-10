@@ -31,7 +31,7 @@
     "babel-loader": "^9.1.0",
     "babel-preset-stage-2": "^6.24.1",
     "braces": "^3.0.2",
-    "faker": "^5.5.3",
+    "@faker-js/faker": "^7.6.0",
     "glob-parent": "^6.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
