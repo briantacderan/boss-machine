@@ -1,4 +1,8 @@
-node_modules
-.DS_Store
-public/js/bundle.js
-public/js/bundle.js.map
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env
