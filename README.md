@@ -1,4 +1,10 @@
-# Boss Machine
+# Boss Machine: Codecademy Project for Express JS & Mocha/Chai Unit Testing
+##### Completed/Updated for Boilerplate Use by: Brian Tacderan
+> ***Notes:***
+* For dependencies to work, I used Node version manager to download everything at version 14.21.1: `nvm use 14.21.1`
+* Check out my `package.json` file to inspect the versions of each package.
+* Completed awhile back; however, I wanted an updated MERN app w/ testing that successfully works with 0 vulnerabilities when installing with npm, so it can serve as a boilerplate for other MERN apps
+
 ## Project Overview
 
 In this project, you will create an entire API to serve information to a Boss Machine, a unique management application for today's most accomplished (evil) entrepreneurs. You will create routes to manage your 'minions', your brilliant 'million dollar ideas', and to handle all the annoying meetings that keep getting added to your busy schedule.
