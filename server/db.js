@@ -1,5 +1,5 @@
-// import * as { faker } from '@faker-js/faker/locale/en_US';
-const { faker } = require('@faker-js/faker/locale/en_US');
+// const { faker } = require('@faker-js/faker/locale/en_US');
+const { faker } = require('./faker.js');
 
 let minionIdCounter = 1;
 
