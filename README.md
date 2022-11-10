@@ -1,4 +1,4 @@
-# Boss Machine: Codecademy Project for Express JS & Mocha/Chai Unit Testing
+# Bossing Machine: Codecademy Project for Express JS & Mocha/Chai Unit Testing
 ##### Completed/Updated for Boilerplate Use by: Brian Tacderan
 > ***Notes:***
 * For dependencies to work, I used Node version manager to download everything at version 14.21.1: `nvm use 14.21.1`

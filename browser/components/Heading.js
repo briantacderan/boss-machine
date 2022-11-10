@@ -13,10 +13,10 @@ const Heading = () => {
 
         <div id="title">
           <Link to="/">
-            <span className="button">Boss Machine</span>
+            <span className="button">Bossing Machine</span>
           </Link>
         </div>
-        
+
     </div>
   )
 }
