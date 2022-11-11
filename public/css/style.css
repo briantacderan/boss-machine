@@ -889,6 +889,13 @@ input, textarea {
 }
 
 @media only screen and (min-width: 450px) and (min-height: 1000px) {
+  #app {
+    height: 90vh;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
   #heading {
     display: flex;
     justify-content: center;
@@ -902,11 +909,27 @@ input, textarea {
     font-size: 4rem;
   }
 
-  img#logo-img {
+  img#logo-img,
+  div#work-container {
     padding-top: 2rem;
   }
 
-  #landing-page,
+  #landing-page {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 100%;
+    height: 80vh;
+    padding-bottom: 0;
+  }
+
+  div#single-minion-landing {
+    max-height: 70vh;
+    justify-content: space-around;
+  }
+
   div:has(> #single-idea-landing),
   div:has(> #single-minion-landing),
   div:has(> #ideas-landing),
@@ -916,10 +939,10 @@ input, textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    max-height: 100vh;
+    justify-content: flex-start;
+    max-height: 100%;
     height: 80vh;
-    padding-bottom: 20px;
+    padding-bottom: 0;
   }
 
   div#single-idea-landing,
@@ -936,6 +959,7 @@ input, textarea {
     line-height: 14px;
     width: 90vw;
     height: 150px;
+    margin: 0 auto 15vh;
   }
 
   .launch-button {
@@ -951,8 +975,16 @@ input, textarea {
     width: 180px;
   }
 
-  .meetings-label {
+  div.back-button img.button,
+  img#add-idea.button {
+    height: 7vw;
+  }
+
+  .meetings-label,
+  div.button.label.launch-label,
+  div#minions-title {
     font-size: 2rem;
+    padding-top: 1rem;
   }
 
   #meetings-landing {
@@ -964,11 +996,30 @@ input, textarea {
     font-size: 1rem;
   }
 
+  div#total-money {
+    width: 450px;
+  }
+
   #meetings-cancel,
-  .back-button {
+  .back-button,
+  div#total-money p,
+  div.minion-save-button {
     font-size: 2rem;
-    width: 250px;
-    height: 80px;
+    width: 375px;
+    height: 50px;
     margin: 2rem;
+    text-align: center;
+  }
+
+  .minion-details, .work-details {
+    margin: 0 0 2rem;
+    padding: 0 0 2rem;
+    border: none;
+    max-height: 40%;
+  }
+
+  div.work-details {
+    border-top: 4px solid #FF4F58;
+    margin-top: 2rem
   }
 }
